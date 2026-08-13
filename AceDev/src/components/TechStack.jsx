@@ -1,3 +1,5 @@
+import useScrollReveal from "../animation/Scroll";
+
 // Inline icons — no icon package required. Each is either a small brand
 // glyph or a colored letter badge, drawn at true brand colors.
 function IconReact(props) {
@@ -100,9 +102,16 @@ const CATEGORIES = [
 // -------------------------------------------------------------------------
 
 export default function TechStack() {
+  const { ref: revealRef, visible } = useScrollReveal();
+
   return (
     <section id="skills" className="bg-white px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      <div
+        ref={revealRef}
+        className={`mx-auto max-w-7xl transition-all duration-700 ease-out ${
+          visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        }`}
+      >
         <div className="flex flex-col items-start gap-4">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/3 px-3 py-1 text-xs font-medium tracking-wide text-zinc-700">
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />

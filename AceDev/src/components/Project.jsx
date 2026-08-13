@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import useScrollReveal from "../animation/Scroll";
 // Inline icons — no icon package required.
 function IconExternalLink(props) {
   return (
@@ -42,8 +42,8 @@ function IconChevronRight(props) {
 }
 
 // --- Easy to customize -------------------------------------------------
-// Swap the image area (marked below) for a real <img> per project once
-// you have screenshots — same pattern as the photo swap in HeroAbout.jsx.
+// Swap each image placeholder for a real <img> once you have screenshots —
+// same pattern as the photo swap in HeroAbout.jsx.
 const PROJECTS = [
   {
     title: "Project One",
@@ -81,6 +81,73 @@ const PROJECTS = [
 // Pure black & white theme — no color accent. -------------------------
 // -------------------------------------------------------------------------
 
+function ImagePlaceholder({ index, className = "" }) {
+  return (
+    <div
+      className={`relative flex items-center justify-center overflow-hidden border-b border-black/10 bg-black/2 ${className}`}
+    >
+      <span className="absolute left-4 top-2 select-none text-6xl font-semibold leading-none text-black/6">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div className="flex flex-col items-center gap-1.5 text-zinc-400">
+        <IconImage width={22} height={22} />
+        <span className="text-[11px]">Add project image</span>
+      </div>
+    </div>
+  );
+}
+
+function ProjectLinks({ project }) {
+  return (
+    <div className="mt-auto flex items-center gap-4 pt-2">
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition-opacity hover:opacity-70 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900"
+      >
+        Live Demo
+        <IconExternalLink width={14} height={14} />
+      </a>
+      <a
+        href={project.repoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 active:scale-[0.98] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-zinc-900"
+      >
+        <IconGithub width={14} height={14} />
+        Code
+      </a>
+    </div>
+  );
+}
+
+// Full card used in both the carousel slide and the desktop grid.
+function ProjectCard({ project, index }) {
+  return (
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)]">
+      <ImagePlaceholder index={index} className="aspect-video" />
+      <div className="flex flex-1 flex-col gap-3 p-6">
+        <h3 className="text-xl font-semibold text-zinc-900">{project.title}</h3>
+        <p className="text-sm leading-relaxed text-zinc-600">
+          {project.description}
+        </p>
+        <ul className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-full border border-black/10 px-2.5 py-1 text-xs text-zinc-600"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+        <ProjectLinks project={project} />
+      </div>
+    </article>
+  );
+}
+
 export default function Projects() {
   const [index, setIndex] = useState(0);
   const total = PROJECTS.length;
@@ -94,11 +161,17 @@ export default function Projects() {
     if (e.key === "ArrowRight") next();
   };
 
-  const project = PROJECTS[index];
+  const activeProject = PROJECTS[index];
+  const { ref: revealRef, visible } = useScrollReveal();
 
   return (
     <section id="work" className="bg-white px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      <div
+        ref={revealRef}
+        className={`mx-auto max-w-7xl transition-all duration-700 ease-out ${
+          visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        }`}
+      >
         <div className="flex flex-col items-start gap-4">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/3 px-3 py-1 text-xs font-medium tracking-wide text-zinc-700">
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />
@@ -113,15 +186,15 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Mobile / tablet: carousel, under 1024px */}
         <div
           role="region"
           aria-roledescription="carousel"
           aria-label="Projects"
           tabIndex={0}
           onKeyDown={onKeyDown}
-          className="relative mx-auto mt-12 max-w-2xl focus:outline-none"
+          className="relative mx-auto mt-12 max-w-2xl focus:outline-none lg:hidden"
         >
-          {/* Arrows */}
           <button
             type="button"
             onClick={prev}
@@ -139,64 +212,8 @@ export default function Projects() {
             <IconChevronRight width={18} height={18} />
           </button>
 
-          {/* Slide */}
-          <article
-            aria-live="polite"
-            className="flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-white"
-          >
-            <div className="relative flex aspect-video items-center justify-center overflow-hidden border-b border-black/10 bg-black/2">
-              <span className="absolute left-4 top-2 select-none text-6xl font-semibold leading-none text-black/6">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="flex flex-col items-center gap-1.5 text-zinc-400">
-                <IconImage width={22} height={22} />
-                <span className="text-[11px]">Add project image</span>
-              </div>
-            </div>
+          <ProjectCard project={activeProject} index={index} />
 
-            <div className="flex flex-1 flex-col gap-3 p-6">
-              <h3 className="text-xl font-semibold text-zinc-900">
-                {project.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-zinc-600">
-                {project.description}
-              </p>
-
-              <ul className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full border border-black/10 px-2.5 py-1 text-xs text-zinc-600"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-2 flex items-center gap-4 pt-2">
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition-opacity hover:opacity-70 active:scale-[0.98] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-zinc-900"
-                >
-                  Live Demo
-                  <IconExternalLink width={14} height={14} />
-                </a>
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900"
-                >
-                  <IconGithub width={14} height={14} />
-                  Code
-                </a>
-              </div>
-            </div>
-          </article>
-
-          {/* Dots */}
           <div className="mt-6 flex items-center justify-center gap-2">
             {PROJECTS.map((p, i) => (
               <button
@@ -211,6 +228,13 @@ export default function Projects() {
               />
             ))}
           </div>
+        </div>
+
+        {/* Desktop: 2x2 grid, 1024px and up */}
+        <div className="mt-12 hidden grid-cols-2 gap-8 lg:grid">
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
         </div>
       </div>
     </section>
