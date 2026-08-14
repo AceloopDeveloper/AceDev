@@ -105,14 +105,14 @@ export default function TechStack() {
   const { ref: revealRef, visible } = useScrollReveal();
 
   return (
-    <section id="skills" className="bg-white px-4 py-24 sm:px-6 lg:px-8">
+    <section id="skills" className="bg-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div
         ref={revealRef}
-        className={`mx-auto max-w-7xl transition-all duration-700 ease-out ${
+        className={`mx-auto max-w-5xl rounded-4xl border border-neutral-200 px-6 py-14 transition-all duration-700 ease-out sm:px-10 sm:py-16 md:px-14 md:py-20 ${
           visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
-        <div className="flex flex-col items-start gap-4">
+        <div className="flex flex-col items-center gap-6 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/3 px-3 py-1 text-xs font-medium tracking-wide text-zinc-700">
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />
             Tech Stack
@@ -120,22 +120,22 @@ export default function TechStack() {
           <h2 className="text-3xl font-semibold tracking-tighter text-zinc-900 sm:text-4xl">
             Tools I work with
           </h2>
-          <p className="max-w-[52ch] text-base leading-relaxed text-zinc-600">
+          <p className="mx-auto max-w-[52ch] text-base leading-loose text-zinc-600">
             The languages, frameworks, and tools I reach for most.
           </p>
         </div>
 
-        <div className="mt-12 flex flex-col gap-10">
+        <div className="mt-20 flex flex-col gap-14 sm:mt-24">
           {CATEGORIES.map((category) => (
-            <div key={category.name} className="flex flex-col gap-4">
+            <div key={category.name} className="flex flex-col items-start gap-5 text-left">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
                 {category.name}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 {category.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex items-center gap-3 rounded-xl border border-black/10 bg-white px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-18px_rgba(0,0,0,0.25)]"
+                    className="flex items-center gap-3 rounded-xl border border-black/10 bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-18px_rgba(0,0,0,0.25)]"
                   >
                     <div className="flex h-9 w-9 items-center justify-center">
                       {skill.icon}
