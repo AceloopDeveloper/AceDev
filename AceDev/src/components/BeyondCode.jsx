@@ -8,39 +8,48 @@ import {
   CaretLeft,
   CaretRight,
 } from "@phosphor-icons/react";
+import gym1 from "../assets/beyond/Hero (1).jpg";
+import gym2 from "../assets/beyond/Hero (2).jpg";
+import running1 from "../assets/beyond//Hero (3).jpg";
+import running2 from "../assets/beyond//Hero (4).jpg";
+import hiking1 from "../assets/beyond//Hero (5).jpg";
+import hiking2 from "../assets/beyond//Hero (6).jpg";
+import travel1 from "../assets/beyond//Hero (7).jpg";
 
 // --- Easy to customize -------------------------------------------------
 // Each activity gets 2 photo slots by default (6 slides total). Add more
 // activities, or more photo slots per activity, by editing PHOTOS_PER_ACTIVITY.
 const ACTIVITIES = [
   {
-    title: "Gym & Strength Training",
+    title: "Gym",
     description:
       "Regular strength training to stay consistent and build discipline that carries over into everything else.",
     icon: Barbell,
+    images: [running1, hiking1],
   },
   {
-    title: "Running",
+    title: "Running/Cycling",
     description:
       "Early morning runs to clear my head before diving into code for the day.",
     icon: PersonSimpleRun,
+    images: [running2, hiking2],
   },
   {
-    title: "Hiking",
+    title: "Travel",
     description:
       "Getting outdoors on weekends whenever I get the chance — good for resetting after a long week.",
     icon: Mountains,
+    images: [gym1, travel1],
   },
 ];
-const PHOTOS_PER_ACTIVITY = 2;
 
 // Swap each placeholder for a real <img> once you have photos, same
 // pattern as HeroAbout.jsx and Project.jsx.
-const SLIDES = ACTIVITIES.flatMap((activity, activityIndex) =>
-  Array.from({ length: PHOTOS_PER_ACTIVITY }, (_, photoIndex) => ({
+const SLIDES = ACTIVITIES.flatMap((activity) =>
+  activity.images.map((image, photoIndex) => ({
     ...activity,
+    image,
     key: `${activity.title}-${photoIndex}`,
-    slideIndex: activityIndex * PHOTOS_PER_ACTIVITY + photoIndex,
   }))
 );
 // -------------------------------------------------------------------------
@@ -59,25 +68,24 @@ const MOVE_MS = 500;
 const TRANSITION_CSS =
   "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease";
 
-function PhotoPlaceholder({ index }) {
+function Photo({ slide }) {
   return (
     <div
-      className="relative flex shrink-0 items-center justify-center overflow-hidden border-b border-black/10 bg-black/2"
+      className="relative shrink-0 overflow-hidden border-b border-black/10"
       style={{ height: PHOTO_HEIGHT }}
     >
-      <span className="absolute left-4 top-2 select-none text-6xl font-semibold leading-none text-black/5">
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <div className="flex flex-col items-center gap-1.5 text-zinc-400">
-        <Image size={22} weight="regular" />
-        <span className="text-[11px]">Add photo</span>
-      </div>
+      <img
+        src={slide.image}
+        alt={`${slide.title} activity`}
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }
 
 function SlideCard({ slide, isActive }) {
   const Icon = slide.icon;
+
   return (
     <div
       className="flex h-full select-none flex-col overflow-hidden rounded-2xl border bg-white"
@@ -88,14 +96,17 @@ function SlideCard({ slide, isActive }) {
           : "0 10px 20px -14px rgba(0,0,0,0.15)",
       }}
     >
-      <PhotoPlaceholder index={slide.slideIndex} />
+      <Photo slide={slide} />
+
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-center gap-2">
           <Icon size={18} weight="regular" className="text-zinc-700" />
+
           <h3 className="text-base font-semibold text-zinc-900">
             {slide.title}
           </h3>
         </div>
+
         <p className="text-sm leading-relaxed text-zinc-600">
           {slide.description}
         </p>

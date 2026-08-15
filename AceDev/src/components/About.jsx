@@ -3,7 +3,8 @@ import { GithubLogo, LinkedinLogo } from "@phosphor-icons/react";
 // --- Easy to customize -------------------------------------------------
 // Swap this out for your real bio — starts with the tagline, then keeps
 // going into your story. It's now a single paragraph, so keep it flowing.
-const BIO = `Building clean, purposeful interfaces with a focus on detail. I'm a frontend developer who enjoys turning ideas into interfaces that feel simple and intentional. I started out tinkering with small personal projects and eventually found myself drawn to the details — spacing, motion, and the small decisions that make an interface feel right. These days I spend most of my time building with React and Tailwind, focused on writing clean code and designing experiences that get out of the user's way.`;
+const BIO = `I’m an aspiring full-stack developer who enjoys building websites and learning how things work behind the scenes. I’m focused on improving my skills in both frontend and backend development, while working on real projects that help me grow. I enjoy solving problems, learning new technologies, and turning ideas into useful and simple web experiences.
+`;
 // -------------------------------------------------------------------------
 
 export default function HeroAbout() {
@@ -19,11 +20,11 @@ export default function HeroAbout() {
             />
             <div className="flex flex-col items-center gap-4">
               <div className="flex flex-col items-center gap-1">
-                <h1 className="text-2xl md:text-3xl font-semibold text-black">
-                  Your Name
+                <h1 className="font-dotgothic text-2xl md:text-3xl text-black">
+                  Assi Jumao-as
                 </h1>
                 <p className="text-sm md:text-base text-neutral-500">
-                  Frontend Developer
+                  Aspiring Full Stack Developer
                 </p>
               </div>
 

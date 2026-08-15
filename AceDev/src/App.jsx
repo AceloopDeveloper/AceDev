@@ -4,7 +4,8 @@ import Projects from "./components/Project";
 import TechStack from "./components/TechStack";
 import GithubActivity from "./components/GitActivity";
 import BeyondTheCode from "./components/BeyondCode";
-
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <TechStack />
         <GithubActivity />
         <BeyondTheCode />
+        <Contact />
+        <Footer />
       </main>
       <div className="w-16 shrink-0" aria-hidden="true" />
     </div>
