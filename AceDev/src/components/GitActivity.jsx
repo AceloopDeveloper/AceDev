@@ -27,7 +27,7 @@ export default function GithubActivity() {
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />
             GitHub Activity
           </span>
-          <h2 className="text-3xl font-semibold tracking-tighter text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-dotgothic tracking-tighter text-zinc-900 sm:text-4xl">
             What I&apos;ve been building
           </h2>
           <p className="mx-auto max-w-[52ch] text-base leading-loose text-zinc-600">

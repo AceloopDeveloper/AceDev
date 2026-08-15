@@ -12,7 +12,7 @@ export default function Contact() {
               className="text-black"
             />
 
-            <h2 className="text-2xl md:text-3xl font-semibold text-black">
+            <h2 className="text-2xl md:text-3xl font-dotgothic text-black">
               Let&apos;s talk
             </h2>
 

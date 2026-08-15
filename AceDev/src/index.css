@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-dotgothic: "DotGothic16", sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -162,7 +162,7 @@ export default function BeyondTheCode() {
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />
             Beyond the Code
           </span>
-          <h2 className="text-3xl font-semibold tracking-tighter text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-dotgothic tracking-tighter text-zinc-900 sm:text-4xl">
             Life outside the screen
           </h2>
           <p className="mx-auto max-w-[52ch] text-base leading-loose text-zinc-600">

@@ -104,7 +104,7 @@ function ProjectRow({ project, reverse, onSelect }) {
             : "md:items-start md:text-left"
         }`}
       >
-        <h3 className="text-xl font-semibold text-zinc-900 sm:text-2xl">
+        <h3 className="text-xl font-dotgothic text-zinc-900 sm:text-2xl">
           {project.title}
         </h3>
 
@@ -204,7 +204,7 @@ function ProjectModal({ project, onClose }) {
         <div className="mt-8 flex flex-col items-start gap-4 text-left">
           <h3
             id="project-modal-title"
-            className="text-2xl font-semibold tracking-tighter text-zinc-900 sm:text-3xl"
+            className="text-2xl font-dotgothic tracking-tighter text-zinc-900 sm:text-3xl"
           >
             {displayProject.title}
           </h3>
@@ -248,7 +248,7 @@ export default function Projects() {
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900" />
             Selected Works
           </span>
-          <h2 className="text-3xl font-semibold tracking-tighter text-zinc-900 sm:text-4xl">
+          <h2 className="text-3xl font-dotgothic tracking-tighter text-zinc-900 sm:text-4xl">
             What I built
           </h2>
           <p className="mx-auto max-w-[52ch] text-base leading-loose text-zinc-600">
