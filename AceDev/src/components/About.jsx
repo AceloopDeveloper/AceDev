@@ -16,7 +16,7 @@ export default function HeroAbout() {
             <img
               src="src/assets/AceDev.png"
               alt="AceDev Logo"
-              className="w-24 h-24 md:w-28 md:h-28 rounded-lg object-cover shrink-0"
+              className="w-32 h-32 md:w-45 md:h-45 rounded-lg object-cover shrink-0"
             />
             <div className="flex flex-col items-center gap-4">
               <div className="flex flex-col items-center gap-1">

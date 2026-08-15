@@ -37,7 +37,7 @@ const PROJECTS = [
 
 function ProjectImage({ project }) {
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-black/15 shadow-[0_15px_35px_-20px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:-translate-y-3 group-hover:border-black/35 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]">
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-black/15 shadow-[0_15px_35px_-20px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:-translate-y-3 group-hover:border-black/35 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]">
       <img
         src={project.image}
         alt={`${project.title} screenshot`}
