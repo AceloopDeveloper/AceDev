@@ -22,7 +22,7 @@ export default function Contact() {
             </p>
 
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:aceloopdeveloper@gmail.com"
               className="border border-black rounded-full px-5 py-2 text-sm text-black hover:bg-black hover:text-white transition-colors mt-2"
             >
               Say Hello

@@ -53,7 +53,7 @@ export default function HeroAbout() {
 
               <div className="flex gap-4 mt-1">
                 <a
-                  href="https://github.com/your-username"
+                  href="https://github.com/AceloopDeveloper"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -62,7 +62,7 @@ export default function HeroAbout() {
                   <GithubLogo size={22} weight="regular" />
                 </a>
                 <a
-                  href="https://linkedin.com/in/your-username"
+                  href="https://www.linkedin.com/in/ace-developer-84b33742a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
